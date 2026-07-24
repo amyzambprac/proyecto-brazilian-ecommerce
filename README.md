@@ -12,10 +12,14 @@ El negocio desea hacer un análisis situacional logístico de los pedidos realiz
 
 1. Determinar el tiempo promedio de entrega (en días) por cada estado de Brasil.
 
-2.  Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño.
+2. Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño.
 
 3. Analizar la variación entre el tiempo real de entrega y el tiempo estimado por la plataforma (Olist).
    
+4. Analizar el rendimiento de las entregas y encontrar formas de optimizar los plazos de entrega.
+   
+5. Encontrar las categorías de productos que suelen generar mayor insatisfacción entre los clientes.
+  
 ## Objetivo del análisis:
 
 Analizar datos logísticos de pedidos E-commerce para identificar cuellos de botella en los tiempos de entrega y detectar bajos desempeños. 
@@ -30,7 +34,7 @@ Para este análisis se usaron dos datasets abiertos del sitio web kaggle.com. Un
 
 ### *Información de los datasets*
 
-Se trata de una base de datos público sobre comercio electrónico en Brasil que recoge los pedidos realizados en Olist Store. El conjunto de datos contiene información sobre 100 000 pedidos realizados entre 2016 y 2018 en diversos mercados online de Brasil. 
+Se trata de una base de datos público sobre comercio electrónico en Brasil que recoge los pedidos realizados en Olist Store. El conjunto de datos contiene información sobre 100 000 pedidos realizados entre 2016 y 2018 en diversos mercados online de Brasil. Cada pedido tiene un «customer_id» único.
 
 ⚠️DISCLAIMER⚠️
 
@@ -52,7 +56,7 @@ Esquema de la base de datos:
 
 ## 2. Staging
 
-### *Análisis exploratorio de los datasets en Excel/Power Query*
+
 
 
 ## 3. Intermediate
