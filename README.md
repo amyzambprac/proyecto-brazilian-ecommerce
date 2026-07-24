@@ -56,8 +56,9 @@ Esquema de la base de datos:
 
 ## 2. Staging
 
-
-
+``` python
+import pandas as pd
+```
 
 ## 3. Intermediate
 
