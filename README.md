@@ -12,7 +12,7 @@ El negocio desea hacer un análisis situacional logístico de los pedidos realiz
 
 1. Determinar el tiempo promedio de entrega (en días) por cada estado de Brasil.
 
-2. Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño.
+2. Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño logístico.
 
 3. Analizar la variación entre el tiempo real de entrega y el tiempo estimado por la plataforma (Olist).
    
@@ -55,6 +55,11 @@ Esquema de la base de datos:
 
 
 ## 2. Staging
+
+En esta etapa se requiere entender las preguntas muy bien para poder saber que tablas necesitaré, así ahorraremos el tiempo de limpieza de datos y solo haremos ETL en lo que usaremos. Las preguntas del 1-4 requieren conocer la variable tiempo, entre tiempo de entrega, estimado de entrega, los estados y sus rendimientos logísticos, tiempo promedio de entrega, optimizar el tiempo de entrega, entonces lo que necesitamos será: tiempos de entrega y estados de Brasil. Esas variables se encuentran en el archivo llamado olist_orders_dataset y olist_customers_dataset, por supuesto que para saber esto, debimos primero hacer un diagrama E-R para saber que columnas contiene cada tabla y para eso debemos abrir cada archivo para poner saber el nombre de estas columnas y hacer el diagrama. 
+
+Finalmente para la pregunta 5 que se trata sobre los reviews de los clientes debemos de unir varias tablas para conectar los reviews con el nombre del producto para conocer cuál producto genera insastifacción al cliente y para eso usaremos las tablas de: reviews, items, products y translation. Por lo tanto nos enfocaremos en esas únicamente, excluyendo las demás base de datos que no necesitamos. 
+
 
 ``` python
 import pandas as pd
