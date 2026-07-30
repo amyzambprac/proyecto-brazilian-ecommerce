@@ -60,10 +60,35 @@ En esta etapa se requiere entender las preguntas muy bien para poder saber que t
 
 Finalmente para la pregunta 5 que se trata sobre los reviews de los clientes debemos de unir varias tablas para conectar los reviews con el nombre del producto para conocer cuál producto genera insastifacción al cliente y para eso usaremos las tablas de: reviews, items, products y translation. Por lo tanto nos enfocaremos en esas únicamente, excluyendo las demás base de datos que no necesitamos. 
 
+Luego que tenemos identificados los archivos que usaremos (en nuestro caso 6/9) los subiremos como data frame con un nombre más corto, por razones de tiempo y complejidad. Una vez que tengamos estos archivos importados y disponibles, procederemos a limpiarlos o transformarlos (como se de el caso segun el tipo de datos que tienen) y finalmente haremos consultas para encontrar las respuestas a los problemas de logística de la empresa. 
+
+### A. *Importación*
+
+Usamos la funcion read.csv en pandas y agregamos el tipo de archivo al final del nombre del mismo, en este caso .csv, esto para que pandas separe el texto separado por comas 
 
 ``` python
 import pandas as pd
+
+orders = pd.read_csv('olist_orders_dataset.csv')
+customers = pd.read_csv('olist_customers_dataset.csv')
+reviews = pd.read_csv('olist_order_reviews_dataset.csv')
+products = pd.read_csv('olist_products_dataset.csv')
+translation = pd.read_csv('product_category_name_translation.csv')
+order_items = pd.read_csv('olist_order_items_dataset.csv')
 ```
+
+Ahora ya tenemos las tablas disponibles para proceder a limpiarlas.
+
+
+### B. *Limpieza y transformación*
+
+Para esto debemos de saber que probablemente los datos de fechas tengan otro formato numérico, así que abriremos los archivos que contengan las fechas que nos importan que serán: el tiempo/la hora en la que se realizó la compra, la distribución del paquete y el estimado de envío por parte de la empresa.
+
+``` python
+
+
+
+
 
 ## 3. Intermediate
 
