@@ -77,18 +77,45 @@ translation = pd.read_csv('product_category_name_translation.csv')
 order_items = pd.read_csv('olist_order_items_dataset.csv')
 ```
 
-Ahora ya tenemos las tablas disponibles para proceder a limpiarlas.
+Ahora ya tenemos las tablas disponibles e importadas para proceder a limpiarlas. Pero antes vamos a confirmar que están correctamente importadas viendo la estructura básica de la tabla con la funcion head. 
+
+``` python
+orders.head(3)
+```
 
 
 ### B. *Limpieza y transformación*
 
-Para esto debemos de saber que probablemente los datos de fechas tengan otro formato numérico, así que abriremos los archivos que contengan las fechas que nos importan que serán: el tiempo/la hora en la que se realizó la compra, la distribución del paquete y el estimado de envío por parte de la empresa.
+Para este paso debemos saber que probablemente los datos de fechas tengan otro formato no numérico, es decir, están como *"texto"*, así que abriremos los archivos que contengan fechas relevantes para resolver las dudas, las cuales son: el tiempo/la hora en la que se realizó la compra, la de distribución del paquete y la de estimación de envío. 
+
+Comencemos con la tabla de *orders*, buscamos dentro de su tabla contiene tres columnas importantes que son: 
+
+1. order_purchase_timestamp
+2. order_delivered_customer_date
+3. order_estimated_delivery_date
+
+### Convertir las fechas de orders
 
 ``` python
+orders['order_purchase_timestamp'] = pd.to_datetime(orders['order_purchase_timestamp'])
+orders['order_delivered_customer_date'] = pd.to_datetime(orders['order_delivered_customer_date'])
+orders['order_estimated_delivery_date'] = pd.to_datetime(orders['order_estimated_delivery_date'])
+```
+Ahora queremos evaluar la logística real, entonces filtraremos los pedidos que han sido entregados, esto nos ayudará a resolver la primera pregunta (promedio en días de entrega de un pedido):
 
+### Filtrar pedidos entregados válidos
 
+``` python
+orders_clean = orders[orders['order_status'] == 'delivered'].copy()
+```
 
+### Crear las columnas de cálculo de días
 
+Necesitamos agregar 3 columnas en la tabla ya filtrada de pedidos 100% entregados, las cuales son:
+
+1. real_delivery_day:
+Restamos la fecha de entrega real menos la fecha de compra
+orders_clean = ['real_delivery_day']
 
 ## 3. Intermediate
 
