@@ -120,14 +120,14 @@ Restamos la fecha de envío al cliente menos la fecha de compra, para saber real
 orders_clean['real_delivery_day'] = (orders_clean['order_delivered_customer_date'] - orders_clean['order_purchase_timestamp']).dt.days
 ```
 
-2.estimated_delivery_day:
+2. estimated_delivery_day:
 Restamos la fecha estimada de entrega menos la fecha de compra, para saber realmente cuántos días existen entre la fecha de compra de un producto y el tiempo supuesto que estima el área logística que llegará al cliente.
 
 ```python
 orders_clean['estimated_delivery_day'] = (orders_clean['order_estimated_delivery_date'] - orders_clean['order_purchase_timestamp']).dt.days
 ```
 
-3.difference_days:
+3. difference_days:
 Restamos las dos columnas anteriores (estimated_delivery_day - real_delivery_day) para la diferencia entre el día que se entregó el pedido y el tiempo que se estimó en que llegara al cliente. 
 
 ```python
