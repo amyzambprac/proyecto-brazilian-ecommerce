@@ -114,6 +114,7 @@ orders_clean = orders[orders['order_status'] == 'delivered'].copy()
 Necesitamos agregar 3 columnas en la tabla ya filtrada de pedidos 100% entregados, las cuales son:
 
 1. real_delivery_day:
+   
 Restamos la fecha de envío al cliente menos la fecha de compra, para saber realmente cuántos días existen entre comprar un producto hasta que se entregó al cliente.
 
 ```python
@@ -121,6 +122,7 @@ orders_clean['real_delivery_day'] = (orders_clean['order_delivered_customer_date
 ```
 
 2. estimated_delivery_day:
+   
 Restamos la fecha estimada de entrega menos la fecha de compra, para saber realmente cuántos días existen entre la fecha de compra de un producto y el tiempo supuesto que estima el área logística que llegará al cliente.
 
 ```python
@@ -128,6 +130,7 @@ orders_clean['estimated_delivery_day'] = (orders_clean['order_estimated_delivery
 ```
 
 3. difference_days:
+   
 Restamos las dos columnas anteriores (estimated_delivery_day - real_delivery_day) para la diferencia entre el día que se entregó el pedido y el tiempo que se estimó en que llegara al cliente. 
 
 ```python
