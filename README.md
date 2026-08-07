@@ -137,6 +137,12 @@ Restamos las dos columnas anteriores (estimated_delivery_day - real_delivery_day
 orders_clean['difference_days'] = (orders_clean['estimated_delivery_day'] - orders_clean['real_delivery_day'])
 ```
 
+Para comprobar que las 3 columnas se crearon correctamente en una tabla con los solo los pedidos entregados (delivered), usamos:
+
+```python
+order_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].head(3)
+```
+
 ## 3. Intermediate
 
 
