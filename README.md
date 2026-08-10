@@ -53,6 +53,7 @@ La base de datos contiene columnas de: estado del pedido, el precio, el pago y e
 
 Esquema de la base de datos:
 
+⚠️ FOTO 
 
 ## 2. Staging
 
@@ -142,6 +143,34 @@ Para comprobar que las 3 columnas se crearon correctamente en una tabla con los 
 ```python
 order_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].head(3)
 ```
+
+FOTO AQUI de la tabla⚠️
+
+Posterior hacemos un merge para conocer las ubicaciones de los pedidos que si fueron entregados con la tabla de orders_clean que ya está filtrada y limpia.
+
+```python
+orders_geo = pd.merge(orders_clean, customers[['customer_id', 'customer_state']], on='customer_id', how='inner')
+```
+
+Revisamos la tabla con las columnas nuevas que se crearon
+
+```python
+order_geo.head(3)
+```
+
+Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, estimated_delivery_day) para saber el promedio de días que se demora en llegar el pedido y el tiempo que se estimó en que iba a llegar según la logística de la empresa:
+
+```python
+order_geo['real_delivery_day'].mean()
+order_geo['difference_days'].mean()
+```
+
+y la mediana de las tres columnas como confirmación de la media, para saber si coinciden o algún valor dentro de los datos se excede e influye en la media, para el negocio la mediana es lo que representa un *"cliente típico"* con respecto a tiempos de entrega de pedidos, evitando que los casos extremos o paquetes problemáticos distorsionen la realidad del negocio. 
+
+```python
+order_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].describe()
+```
+FOTO AQUI de la tabla⚠️
 
 ## 3. Intermediate
 
