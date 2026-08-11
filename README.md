@@ -160,28 +160,35 @@ order_geo.head(3)
 
 Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales.
 
+## Promedio del tiempo real de entrega de un paquete
+
 ```python
 order_geo['real_delivery_day'].mean()
 ```
-*### Resultado:*
+### Resultado:
 
-Media = 12.093
+Media = 12.093 días. El promedio de días en el que un llega un pedido a su destino es de aproximadamente 12 días.
+
+## Promedio de la diferencia de tiempo entre el real y estimado
 
 ```python
 order_geo['difference_days'].mean()
 ```
-*### Resultado:*
+### Resultado:
 
-Media = 11.279
+Media = 11.279 días. El promedio de días en el que un pedido llegue antes de los prometido es de aproximadamente 12 días.
 
 No sacamos la media de el *'estimated_delivery_day'* ya que es solo una promesa matemática y no una realidad operativa, por lo tanto no es necesario el promedio.
 
 Sin embargo, sacaremos la mediana de las tres columnas para confirmar la media, y con esto saber si coinciden o no se dispersa mucho de la media. Para el negocio, la mediana es lo que representa un *"cliente típico"* con respecto a tiempos de entrega de pedidos, evitando que los casos extremos o paquetes problemáticos distorsionen la realidad del negocio. 
 
+## Mediana aritmética de los tiempos de entrega
+
 ```python
 order_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].describe()
 ```
-*### Resultado:*
+### Resultado:
+
 En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. 
 
 FOTO AQUI de la tabla⚠️
