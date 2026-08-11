@@ -158,19 +158,40 @@ Revisamos la tabla con las columnas nuevas que se crearon
 order_geo.head(3)
 ```
 
-Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, estimated_delivery_day) para saber el promedio de días que se demora en llegar el pedido y el tiempo que se estimó en que iba a llegar según la logística de la empresa:
+Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales.
 
 ```python
 order_geo['real_delivery_day'].mean()
+```
+*### Resultado:*
+
+Media = 12.093
+
+```python
 order_geo['difference_days'].mean()
 ```
+*### Resultado:*
 
-y la mediana de las tres columnas como confirmación de la media, para saber si coinciden o algún valor dentro de los datos se excede e influye en la media, para el negocio la mediana es lo que representa un *"cliente típico"* con respecto a tiempos de entrega de pedidos, evitando que los casos extremos o paquetes problemáticos distorsionen la realidad del negocio. 
+Media = 11.279
+
+No sacamos la media de el *'estimated_delivery_day'* ya que es solo una promesa matemática y no una realidad operativa, por lo tanto no es necesario el promedio.
+
+Sin embargo, sacaremos la mediana de las tres columnas para confirmar la media, y con esto saber si coinciden o no se dispersa mucho de la media. Para el negocio, la mediana es lo que representa un *"cliente típico"* con respecto a tiempos de entrega de pedidos, evitando que los casos extremos o paquetes problemáticos distorsionen la realidad del negocio. 
 
 ```python
 order_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].describe()
 ```
+*### Resultado:*
+En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. 
+
 FOTO AQUI de la tabla⚠️
+
+
+
+
+
+
+
 
 ## 3. Intermediate
 
