@@ -207,6 +207,9 @@ order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(asce
 El estado Roraima (RR) tiene el PEOR desempeño logístico con un promedio de 28.97 días de entrega de un pedido, aproximadamente 4 días después del tiempo estimado por la empresa (23.37)
 
 
+<img width="744" height="173" alt="image" src="https://github.com/user-attachments/assets/34a4e17c-1c6b-423d-990c-ba68e350eb8e" />
+
+
 ## Top 10 estados con los envíos más rápidos (en promedio)
 
 ```python
@@ -216,6 +219,8 @@ order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(asce
 ### Resultado:
 
 El estado São Paulo (SP) tiene el MEJOR desempeño logístico con un promedio de 8.29 días de entrega de un pedido, aproximadamente 16 días antes de la fecha prevista por la emprea (23.37) y 4 días antes de la diferencia entre el real y el estimado (11.27)
+
+<img width="729" height="169" alt="image" src="https://github.com/user-attachments/assets/7a56d945-ab48-43f0-8efd-ef166b46e42f" />
 
 
 ## 3. Intermediate
