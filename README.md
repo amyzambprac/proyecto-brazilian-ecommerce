@@ -158,7 +158,7 @@ Revisamos la tabla con las columnas nuevas que se crearon
 order_geo.head(3)
 ```
 
-Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales.
+Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales. Este proceso corresponde a buscar la solución de la primera pregunta de este proyecto.
 
 ## Promedio del tiempo real de entrega de un paquete
 
@@ -194,10 +194,28 @@ En la imagen adjunta observamos que la mediana no varía de la media, eso indica
 FOTO AQUI de la tabla⚠️
 
 
+Para encontrar la respuesta de la pregunta 2 (Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño logístico) usaremos la función de agrupación, media y orden de mayor a menor sobre la tabla limpia que tenemos (order_geo). Usamos la función de promedio para tener una vista general de los tiempos de entrega. Agrupamos por estado y ordenamos para tener un ranking de los estados.
+
+## Top 10 estados con los envíos más lentos (en promedio)
+
+```python
+order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(ascending=False).head(5)
+```
+
+### Resultado:
+
+El estado Roraima (RR) tiene el PEOR desempeño logístico con un promedio de 28.97 días de entrega de un pedido, aproximadamente 4 días después del tiempo estimado por la empresa (23.37)
 
 
+## Top 10 estados con los envíos más rápidos (en promedio)
 
+```python
+order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(ascending=True).head(5)
+```
 
+### Resultado:
+
+El estado São Paulo (SP) tiene el MEJOR desempeño logístico con un promedio de 8.29 días de entrega de un pedido, aproximadamente 16 días antes de la fecha prevista por la emprea (23.37) y 4 días antes de la diferencia entre el real y el estimado (11.27)
 
 
 ## 3. Intermediate
