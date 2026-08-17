@@ -204,7 +204,7 @@ order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(asce
 
 ### Resultado:
 
-El estado Roraima (RR) tiene el PEOR desempeño logístico con un promedio de 28.97 días de entrega de un pedido, aproximadamente 4 días después del tiempo estimado por la empresa (23.37)
+El estado Roraima (RR) tiene el PEOR desempeño logístico con un promedio de 28.97 días de entrega de un pedido, aproximadamente 4 días después del tiempo estimado por la empresa (23.37 días)
 
 <img width="301" height="127" alt="image" src="https://github.com/user-attachments/assets/97ac62bc-8c6a-400c-9f24-25dd753eeea2" />
 
@@ -217,7 +217,7 @@ order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(asce
 
 ### Resultado:
 
-El estado São Paulo (SP) tiene el MEJOR desempeño logístico con un promedio de 8.29 días de entrega de un pedido, aproximadamente 16 días antes de la fecha prevista por la emprea (23.37) y 4 días antes de la diferencia entre el real y el estimado (11.27)
+El estado São Paulo (SP) tiene el MEJOR desempeño logístico con un promedio de 8.29 días de entrega de un pedido, aproximadamente 16 días antes de la fecha prevista por la emprea (23.37días) y 4 días antes de la diferencia entre el real y el estimado (11.27 días)
 
 <img width="304" height="123" alt="image" src="https://github.com/user-attachments/assets/cd1f5912-6607-40c2-b00e-9381d7c1a340" />
 
