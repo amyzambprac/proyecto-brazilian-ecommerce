@@ -6,6 +6,9 @@
 
 ## Fase de consulta:
 Olist Store es una plataforma tecnológica y de servicios de comercio electrónico de origen brasileño, fundada en 2015, que funciona como un "puente" digital. Su objetivo principal es permitir a las pequeñas y medianas empresas vender sus productos en los marketplaces más grandes (como Mercado Libre o Amazon) sin necesidad de lidiar con integraciones o logísticas complejas. 
+
+<img width="1313" height="864" alt="imagen par apdf brazilian ecommerce" src="https://github.com/user-attachments/assets/eebfc736-2b1c-474c-9979-3a2f9d277a2a" />
+
 Cuando un cliente compra un producto en Olist Store, se notifica al vendedor para que tramite el pedido. Una vez que el cliente recibe el producto, o cuando se cumple la fecha de entrega estimada, se le envía por correo electrónico una encuesta de satisfacción en la que puede valorar su experiencia de compra y escribir algunos comentarios.
 
 El negocio desea hacer un análisis situacional logístico de los pedidos realizados desde 2016 hasta 2018 dentro del territorio brasileño:
@@ -53,7 +56,7 @@ La base de datos contiene columnas de: estado del pedido, el precio, el pago y e
 
 Esquema de la base de datos:
 
-⚠️ FOTO 
+<img width="2486" height="1496" alt="FOTO ESQUEMA BRAZILIAN ECOMMERCE" src="https://github.com/user-attachments/assets/f2ec13d8-0931-4efa-95cb-22a876226e16" />
 
 ## 2. Staging
 
