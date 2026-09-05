@@ -66,7 +66,7 @@ Finalmente para la pregunta 5 que se trata sobre los reviews de los clientes deb
 
 Luego que tenemos identificados los archivos que usaremos (en nuestro caso 6/9) los subiremos como data frame con un nombre más corto, por razones de tiempo y complejidad. Una vez que tengamos estos archivos importados y disponibles, procederemos a limpiarlos o transformarlos (como se de el caso segun el tipo de datos que tienen) y finalmente haremos consultas para encontrar las respuestas a los problemas de logística de la empresa. 
 
-### A. *Importación*
+## A. *Importación*
 
 Usamos la funcion read.csv en pandas y agregamos el tipo de archivo al final del nombre del mismo, en este caso .csv, esto para que pandas separe el texto separado por comas 
 
@@ -88,7 +88,7 @@ orders.head(3)
 ```
 
 
-### B. *Limpieza y transformación*
+## B. *Limpieza y transformación*
 
 Para este paso debemos saber que probablemente los datos de fechas tengan otro formato no numérico, es decir, están como *"texto"*, así que abriremos los archivos que contengan fechas relevantes para resolver las dudas, las cuales son: el tiempo/la hora en la que se realizó la compra, la de distribución del paquete y la de estimación de envío. 
 
@@ -165,9 +165,10 @@ orders_geo.head(3)
 <img width="1008" height="249" alt="image" src="https://github.com/user-attachments/assets/39291d77-f910-459d-803b-08f70dc33b5e" />
 
 
+
 Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales. Este proceso corresponde a buscar la solución de la primera pregunta de este proyecto.
 
-## Promedio del tiempo real de entrega de un paquete
+### Promedio del tiempo real de entrega de un paquete
 
 ```python
 orders_geo['real_delivery_day'].mean()
@@ -176,7 +177,7 @@ orders_geo['real_delivery_day'].mean()
 
 Media = 12.093 días. El promedio de días en el que un llega un pedido a su destino es de aproximadamente 12 días.
 
-## Promedio de la diferencia de tiempo entre el real y estimado
+### Promedio de la diferencia de tiempo entre el real y estimado
 
 ```python
 orders_geo['difference_days'].mean()
@@ -198,7 +199,7 @@ order_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].de
 
 En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. 
 
-FOTO AQUI de la tabla⚠️
+<img width="729" height="469" alt="image" src="https://github.com/user-attachments/assets/988c9b17-a987-4756-bc84-90f3dfaade90" />
 
 
 Para encontrar la respuesta de la pregunta 2 (Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño logístico) usaremos la función de agrupación, media y orden de mayor a menor sobre la tabla limpia que tenemos (order_geo). Usamos la función de promedio para tener una vista general de los tiempos de entrega. Agrupamos por estado y ordenamos para tener un ranking de los estados.
