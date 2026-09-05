@@ -144,12 +144,13 @@ orders_clean['difference_days'] = (orders_clean['estimated_delivery_day'] - orde
 Para comprobar que las 3 columnas se crearon correctamente en una tabla con los solo los pedidos entregados (delivered), usamos:
 
 ```python
-order_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].head(3)
+orders_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].head(3)
 ```
 
 <img width="409" height="130" alt="image" src="https://github.com/user-attachments/assets/5f3d7683-1f61-4615-9711-f2d64529b4c3" />
 
-Posterior hacemos un merge para conocer las ubicaciones de los pedidos que si fueron entregados con la tabla de orders_clean que ya está filtrada y limpia.
+
+Posterior, hacemos un merge para conocer las ubicaciones de los pedidos que si fueron entregados con la tabla de orders_clean que ya está filtrada y limpia.
 
 ```python
 orders_geo = pd.merge(orders_clean, customers[['customer_id', 'customer_state']], on='customer_id', how='inner')
@@ -158,8 +159,11 @@ orders_geo = pd.merge(orders_clean, customers[['customer_id', 'customer_state']]
 Revisamos la tabla con las columnas nuevas que se crearon
 
 ```python
-order_geo.head(3)
+orders_geo.head(3)
 ```
+
+<img width="1008" height="249" alt="image" src="https://github.com/user-attachments/assets/39291d77-f910-459d-803b-08f70dc33b5e" />
+
 
 Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales. Este proceso corresponde a buscar la solución de la primera pregunta de este proyecto.
 
