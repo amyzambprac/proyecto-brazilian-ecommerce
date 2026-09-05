@@ -151,8 +151,9 @@ orders_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']]
 
 <img width="409" height="130" alt="image" src="https://github.com/user-attachments/assets/5f3d7683-1f61-4615-9711-f2d64529b4c3" />
 
+## 3. Intermediate
 
-Posterior, hacemos un merge para conocer las ubicaciones de los pedidos que si fueron entregados con la tabla de orders_clean que ya está filtrada y limpia.
+Hacemos un merge para conocer las ubicaciones de los pedidos que si fueron entregados con la tabla de orders_clean que ya está filtrada y limpia.
 
 ```python
 orders_geo = pd.merge(orders_clean, customers[['customer_id', 'customer_state']], on='customer_id', how='inner')
@@ -245,24 +246,36 @@ promedio_por_estado.head(5)
 
 <img width="306" height="168" alt="image" src="https://github.com/user-attachments/assets/a2b96f79-5aec-4b03-a429-61f1cf7a62fc" />
 
+### Resultado:
+
+Sao Paulo es el estado con el mejor promedio de días de entrega, con un resultado de 8.3 días, comprobando lo que anteriormente ya habíamos calculado en el raking de los estados con los tiempos de entrega más rápidos; seguido de Minas Gerais y Paraná con un tiempo de entrega igual de 11.5 días.
 
 
+Para resolver la pregunta 5 (encontrar las categorías de productos que suelen generar mayor insatisfacción entre los clientes) debemos hacer un merge/join entre los reviews de los clientes, los artículos o items que tienen un reviews y el # de orden o transacción. 
 
+### Categorías de productos que tienen mayor insatisfacción entre los clientes 
 
+```python
+df_reviews = order_items.merge(products, on='product_id').merge(reviews, on='order_id')
+```
+Luego hacemos una agrupación de las categorías de los productos, usamos las funciones count y mean para calcular cuántos productos hay por categoría y el promedio de las puntaciones de las reseñar/reviews.
 
+```python
+cate_summary = df_reviews.groupby('product_category_name')['review_score'].agg(['mean', 'count'])
+```
 
+Y ahora buscamos calcular las categorías que generan insastifacción según las reviews de los clientes, también ajustamos con un filtro de > 50 para que solo nos aparezcan las categorías que alcanzaron más de 50 puntos en las puntuaciones de los reviews de los clientes para descartar que se filtren categorías con pocas ventas y mala puntuación que llegarán a distorsionar la tabla resultante. Ordenamos para que nos aparezcan los productos con más insastifacción primero y comprobamos el resultado con solo 10 filas.
 
+```python
+cate_insatisfaccion = cate_summary[cate_summary['count'] > 50].sort_values(by='mean', ascending=True).head(10)
+```
+<img width="348" height="398" alt="image" src="https://github.com/user-attachments/assets/d22c0ccb-b6ee-4ad3-b8c5-6c0093d54d29" />
 
+Ahora tenemos el promedio de las reviews según cada categoría y la cantidad de productos que se vendieron de las mismas.
 
+### Resultado:
 
-
-
-## 3. Intermediate
-
-
-
-
-
+La categoría con mayor insastifacción evaluada por los clientes lleva por nombre 'Moveis escritório' o muebles de oficina con un promedio de insastifaccion de 3.49/5 y 1687 artículos vendidos.  
 
 ## Conclusiones:
 
