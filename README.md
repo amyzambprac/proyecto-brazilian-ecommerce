@@ -162,8 +162,7 @@ Revisamos la tabla con las columnas nuevas que se crearon
 orders_geo.head(3)
 ```
 
-<img width="1008" height="249" alt="image" src="https://github.com/user-attachments/assets/39291d77-f910-459d-803b-08f70dc33b5e" />
-
+<img width="436" height="279" alt="image" src="https://github.com/user-attachments/assets/63a22dfc-bb64-465e-8efa-52b51a216a65" />
 
 
 Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales. Este proceso corresponde a buscar la solución de la primera pregunta de este proyecto.
