@@ -170,7 +170,7 @@ Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, differ
 ## Promedio del tiempo real de entrega de un paquete
 
 ```python
-order_geo['real_delivery_day'].mean()
+orders_geo['real_delivery_day'].mean()
 ```
 ### Resultado:
 
@@ -179,7 +179,7 @@ Media = 12.093 días. El promedio de días en el que un llega un pedido a su des
 ## Promedio de la diferencia de tiempo entre el real y estimado
 
 ```python
-order_geo['difference_days'].mean()
+orders_geo['difference_days'].mean()
 ```
 ### Resultado:
 
