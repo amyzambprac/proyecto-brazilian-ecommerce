@@ -112,6 +112,8 @@ Ahora queremos evaluar la logística real, entonces filtraremos los pedidos que 
 ``` python
 orders_clean = orders[orders['order_status'] == 'delivered'].copy()
 ```
+Una vez ya tenemos los datos cargados, transformados y limpios, procedemos a analizar que tipo de funciones y/o operaciones debemos realizar.
+Emperazaremos creando columnas de los tiempos de envío.
 
 ### Crear las columnas de cálculo de días
 
@@ -164,10 +166,9 @@ orders_geo.head(3)
 
 <img width="976" height="237" alt="image" src="https://github.com/user-attachments/assets/318ca7db-f370-4ca9-af58-4fbe5f9f9945" />
 
+### Promedio del tiempo real de entrega de un paquete
 
 Ahora sacamos la media/promedio de cada nueva columna (real_delivery_day, difference_days) para saber el promedio de días en el que un pedido llega al cliente y el promedio de la diferencia de días que existe entre el tiempo estimado y el real, esto con el objetivo de evaluar la precisión del sistema de estimación de envíos y entender qué tan bien cumple la empresa sus promesas comerciales. Este proceso corresponde a buscar la solución de la primera pregunta de este proyecto.
-
-### Promedio del tiempo real de entrega de un paquete
 
 ```python
 orders_geo['real_delivery_day'].mean()
@@ -189,10 +190,10 @@ No sacamos la media de el *'estimated_delivery_day'* ya que es solo una promesa 
 
 Sin embargo, sacaremos la mediana de las tres columnas para confirmar la media, y con esto saber si coinciden o no se dispersa mucho de la media. Para el negocio, la mediana es lo que representa un *"cliente típico"* con respecto a tiempos de entrega de pedidos, evitando que los casos extremos o paquetes problemáticos distorsionen la realidad del negocio. 
 
-## Mediana aritmética de los tiempos de entrega
+### Mediana aritmética de los tiempos de entrega
 
 ```python
-order_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].describe()
+orders_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].describe()
 ```
 ### Resultado:
 
@@ -200,12 +201,13 @@ En la imagen adjunta observamos que la mediana no varía de la media, eso indica
 
 <img width="432" height="271" alt="image" src="https://github.com/user-attachments/assets/77f7ff0c-4afe-4435-a795-4148866bae28" />
 
-Para encontrar la respuesta de la pregunta 2 (Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño logístico) usaremos la función de agrupación, media y orden de mayor a menor sobre la tabla limpia que tenemos (order_geo). Usamos la función de promedio para tener una vista general de los tiempos de entrega. Agrupamos por estado y ordenamos para tener un ranking de los estados.
 
-## Top 10 estados con los envíos más lentos (en promedio)
+### Top 5 estados con los envíos más lentos (en promedio)
+
+Para encontrar la respuesta de la pregunta 2 (Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño logístico) usaremos la función de agrupación (groupby), media (mean) y orden de mayor a menor sobre la tabla limpia que tenemos (orders_geo). Usamos la función de promedio para tener una vista general de los tiempos de entrega. Agrupamos por estado y ordenamos para tener un ranking de los estados.
 
 ```python
-order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(ascending=False).head(5)
+orders_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(ascending=False).head(5)
 ```
 
 ### Resultado:
@@ -215,10 +217,10 @@ El estado Roraima (RR) tiene el PEOR desempeño logístico con un promedio de 28
 <img width="301" height="127" alt="image" src="https://github.com/user-attachments/assets/97ac62bc-8c6a-400c-9f24-25dd753eeea2" />
 
 
-## Top 10 estados con los envíos más rápidos (en promedio)
+### Top 5 estados con los envíos más rápidos (en promedio)
 
 ```python
-order_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(ascending=True).head(5)
+orders_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(ascending=True).head(5)
 ```
 
 ### Resultado:
@@ -228,7 +230,37 @@ El estado São Paulo (SP) tiene el MEJOR desempeño logístico con un promedio d
 <img width="304" height="123" alt="image" src="https://github.com/user-attachments/assets/cd1f5912-6607-40c2-b00e-9381d7c1a340" />
 
 
+Ahora que tenemos los tiempos promedios y los estados de brasil unidos mediante un join, podemos resolver la pregunta 1.
+
+### Tiempo promedio de entrega por cada estado
+
+```python
+promedio_por_estado = orders_geo.groupby('customer_state')['real_delivery_day'].mean().round(1).sort_values()
+```
+La comprobación del resultado:
+
+```python
+promedio_por_estado.head(5)
+```
+
+<img width="306" height="168" alt="image" src="https://github.com/user-attachments/assets/a2b96f79-5aec-4b03-a429-61f1cf7a62fc" />
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 3. Intermediate
+
+
+
 
 
 
