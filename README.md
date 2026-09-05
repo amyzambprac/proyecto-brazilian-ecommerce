@@ -198,8 +198,7 @@ order_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].de
 
 En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. 
 
-<img width="729" height="469" alt="image" src="https://github.com/user-attachments/assets/988c9b17-a987-4756-bc84-90f3dfaade90" />
-
+<img width="432" height="271" alt="image" src="https://github.com/user-attachments/assets/77f7ff0c-4afe-4435-a795-4148866bae28" />
 
 Para encontrar la respuesta de la pregunta 2 (Identifica los 5 estados con peor desempeño y los 5 con mejor desempeño logístico) usaremos la función de agrupación, media y orden de mayor a menor sobre la tabla limpia que tenemos (order_geo). Usamos la función de promedio para tener una vista general de los tiempos de entrega. Agrupamos por estado y ordenamos para tener un ranking de los estados.
 
