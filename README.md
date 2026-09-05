@@ -275,9 +275,36 @@ Ahora tenemos el promedio de las reviews según cada categoría y la cantidad de
 
 ### Resultado:
 
-La categoría con mayor insastifacción evaluada por los clientes lleva por nombre 'Moveis escritório' o muebles de oficina con un promedio de insastifaccion de 3.49/5 y 1687 artículos vendidos.  
+La categoría con mayor insastifacción evaluada por los clientes lleva por nombre 'Moveis escritório' o muebles de oficina con un promedio de insastifaccion de 3.49/5 y 1687 artículos vendidos. 
+
+Finalmente para responder la pregunta 4 lo definiremos en la sección de conclusiones e insights.
+
+
+## Marts 
+
+Se definieron e implementaron dos tablas estructuradas (modelado dimensional) para separar las métricas cuantitativas del análisis logístico de los atributos geográficos.
+
+### 1. Tabla de Hechos Logística
+
+Almacena los indicadores numéricos y fechas relativas a cada orden de compra.
+
+```python
+fact_orders = orders_clean[['order_id', 'customer_id', 'order_status', 'real_delivery_day', 'estimated_delivery_day', 'difference_days']].copy()
+```
+
+### 2. Dimensión de Clientes/Geografía
+
+```python
+dim_customers = customers[['customer_id', 'customer_unique_id', 'customer_zip_code_prefix', 'customer_city', 'customer_state']].copy()
+```
 
 ## Conclusiones:
+
+1. Se encontró el rendimiento actual de las entregas en la cual existe una alta diferencia de días entre los tiempos de entregas dependiendo el estado en donde el cliente viva, siendo esta diferencia de 20 días, dando como resultado una alta brecha geográfica entre comsumidores. Por ejemplo, un cliente que recibe un pedido en Sao Paulo tiene recibe su pedido en un aproximado de 8 días mientras que alguien que recibe su pedido en el estado de Roraima tiene que esperar 29 días por el mismo. 
+   
+2. La mayoría de los vendedores y almacenes están agrupados en la región Sureste (SP, PR, MG). Cada pedido enviado al Norte o Nordeste debe recorrer distancias de más de 2,000 a 3,000 km con una infraestructura vial posiblemente compleja.
+
+3. Existe un aceptación positiva al recibir el pedido porque la empresa promete entregas en 23.4 días promedio cuando el tiempo real de entrega global es de 12.1 días y esto genera sorpresas positivas (+11.3 días de anticipación) en los consumidores. Sin embargo, si en el checkout se menciona esto pordría generar que potenciales clientes abandonen la compra por considerar que el envío es "demasiado lento o tardío, o no llegará para cuando lo necesito".
 
 
 ## Insight:
