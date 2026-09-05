@@ -147,7 +147,7 @@ Para comprobar que las 3 columnas se crearon correctamente en una tabla con los 
 order_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].head(3)
 ```
 
-FOTO AQUI de la tabla⚠️
+<img width="409" height="130" alt="image" src="https://github.com/user-attachments/assets/5f3d7683-1f61-4615-9711-f2d64529b4c3" />
 
 Posterior hacemos un merge para conocer las ubicaciones de los pedidos que si fueron entregados con la tabla de orders_clean que ya está filtrada y limpia.
 
