@@ -308,3 +308,15 @@ dim_customers = customers[['customer_id', 'customer_unique_id', 'customer_zip_co
 
 
 ## Insight:
+
+1. La creación de centros de distribución regionales en puntos estratégicos pueden ayudar a disminuir los altos tiempos de entrega para estados del norte y este del país.
+   
+2. Incentivar a que más vendedores locales se registren en la plataforma ecommerce de Olist, ayudará a que también disminuyan los tiempos de entregas aún más, mediante campañas de marketing e información más vendedores sabrán de la plataforma de Olist.
+
+3. El análisis mostró un tiempo estimado de entrega alto por el contrario de lo que muestra la data, en donde existe una diferencia de entre 10 a 12 días aproximadamente, quizás este tiempo se está mostrando en el checkout de las compras y puede detener el proceso de conversión de usuarios. Se recomienda ajustar el algoritmo de la plataforma debería calcular estimaciones basadas en el histórico real de la data por estado y dar márgenes de seguridad tan amplios que desmotiven al comprador.
+
+4. Considerar otro tipo de transporte logístico para envíos de productos a destinos más alejados de los vendedores, por ejemplo usar transporte aéreo de artículos pequeños y ligeros mediante una alianza estratégicas con una empresa de este tipo de transporte.
+
+
+
+
