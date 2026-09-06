@@ -8,7 +8,7 @@ Python, pandas, Jupyter, Power BI
 ## Fase de consulta:
 Olist Store es una plataforma tecnológica y de servicios de comercio electrónico de origen brasileño, fundada en 2015, que funciona como un "puente" digital. Su objetivo principal es permitir a las pequeñas y medianas empresas vender sus productos en los marketplaces más grandes (como Mercado Libre o Amazon) sin necesidad de lidiar con integraciones o logísticas complejas. 
 
-<img width="1313" height="864" alt="imagen par apdf brazilian ecommerce" src="https://github.com/user-attachments/assets/eebfc736-2b1c-474c-9979-3a2f9d277a2a" />
+![Imagen referencial plataforma](1.png)
 
 Cuando un cliente compra un producto en Olist Store, se notifica al vendedor para que tramite el pedido. Una vez que el cliente recibe el producto, o cuando se cumple la fecha de entrega estimada, se le envía por correo electrónico una encuesta de satisfacción en la que puede valorar su experiencia de compra y escribir algunos comentarios.
 
@@ -57,7 +57,7 @@ La base de datos contiene columnas de: estado del pedido, el precio, el pago y e
 
 Esquema de la base de datos:
 
-<img width="2486" height="1496" alt="FOTO ESQUEMA BRAZILIAN ECOMMERCE" src="https://github.com/user-attachments/assets/f2ec13d8-0931-4efa-95cb-22a876226e16" />
+![Esquema de la base de datos](2.png)
 
 ## 2. Staging
 
@@ -150,7 +150,7 @@ Para comprobar que las 3 columnas se crearon correctamente en una tabla con los 
 orders_clean[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].head(3)
 ```
 
-<img width="409" height="130" alt="image" src="https://github.com/user-attachments/assets/5f3d7683-1f61-4615-9711-f2d64529b4c3" />
+![Comprobación de las columnas creadas](3.png)
 
 ## 3. Intermediate
 
@@ -166,7 +166,8 @@ Revisamos la tabla con las columnas nuevas que se crearon
 orders_geo.head(3)
 ```
 
-<img width="976" height="237" alt="image" src="https://github.com/user-attachments/assets/318ca7db-f370-4ca9-af58-4fbe5f9f9945" />
+![Comprobación de tabla resultante orders_geo](4.png)
+
 
 ### Promedio del tiempo real de entrega de un paquete
 
@@ -201,7 +202,7 @@ orders_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].d
 
 En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. 
 
-<img width="432" height="271" alt="image" src="https://github.com/user-attachments/assets/77f7ff0c-4afe-4435-a795-4148866bae28" />
+![Tabla de mediana aritmetica de las columnas creadas](5.png)
 
 
 ### Top 5 estados con los envíos más lentos (en promedio)
@@ -216,7 +217,7 @@ orders_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(asc
 
 El estado Roraima (RR) tiene el PEOR desempeño logístico con un promedio de 28.97 días de entrega de un pedido, aproximadamente 4 días después del tiempo estimado por la empresa (23.37 días)
 
-<img width="301" height="127" alt="image" src="https://github.com/user-attachments/assets/97ac62bc-8c6a-400c-9f24-25dd753eeea2" />
+![Top 5 estados con los envíos más lentos](6.png)
 
 
 ### Top 5 estados con los envíos más rápidos (en promedio)
@@ -229,7 +230,7 @@ orders_geo.groupby('customer_state')['real_delivery_day'].mean().sort_values(asc
 
 El estado São Paulo (SP) tiene el MEJOR desempeño logístico con un promedio de 8.29 días de entrega de un pedido, aproximadamente 16 días antes de la fecha prevista por la emprea (23.37días) y 4 días antes de la diferencia entre el real y el estimado (11.27 días)
 
-<img width="304" height="123" alt="image" src="https://github.com/user-attachments/assets/cd1f5912-6607-40c2-b00e-9381d7c1a340" />
+![Top 5 estados con los envíos más rápidos](7.png)
 
 
 Ahora que tenemos los tiempos promedios y los estados de brasil unidos mediante un join, podemos resolver la pregunta 1.
@@ -245,7 +246,7 @@ La comprobación del resultado:
 promedio_por_estado.head(5)
 ```
 
-<img width="306" height="168" alt="image" src="https://github.com/user-attachments/assets/a2b96f79-5aec-4b03-a429-61f1cf7a62fc" />
+![Tiempo promedio de entrega por cada estado](8.png)
 
 ### Resultado:
 
@@ -270,7 +271,8 @@ Y ahora buscamos calcular las categorías que generan insastifacción según las
 ```python
 cate_insatisfaccion = cate_summary[cate_summary['count'] > 50].sort_values(by='mean', ascending=True).head(10)
 ```
-<img width="348" height="398" alt="image" src="https://github.com/user-attachments/assets/d22c0ccb-b6ee-4ad3-b8c5-6c0093d54d29" />
+![Categorías que generan insastifacción](9.png)
+
 
 Ahora tenemos el promedio de las reviews según cada categoría y la cantidad de productos que se vendieron de las mismas.
 
