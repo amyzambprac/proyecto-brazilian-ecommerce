@@ -1,7 +1,8 @@
 ## proyecto-brazilian-ecommerce
 # ¿Qué estados de Brasil tienen los peores tiempos de entrega?
 ### Rol: Junior Data Analyst
-
+### Herramientras usadas:
+Python, pandas, Jupyter, Power BI
 ## 📊 Dashboard Interactivo
 
 ## Fase de consulta:
