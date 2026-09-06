@@ -277,7 +277,7 @@ Ahora tenemos el promedio de las reviews según cada categoría y la cantidad de
 
 La categoría con mayor insastifacción evaluada por los clientes lleva por nombre 'Moveis escritório' o muebles de oficina con un promedio de insastifaccion de 3.49/5 y 1687 artículos vendidos. 
 
-Finalmente para responder la pregunta 4 lo definiremos en la sección de conclusiones e insights.
+Finalmente la pregunta 4 se responderá en la sección de conclusiones e insights.
 
 
 ## Marts 
