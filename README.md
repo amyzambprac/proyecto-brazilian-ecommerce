@@ -200,7 +200,7 @@ orders_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].d
 ```
 ### Resultado:
 
-En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. 
+En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. También podemos ver como 
 
 ![Tabla de mediana aritmetica de las columnas creadas](5.png)
 
