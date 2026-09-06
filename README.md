@@ -260,6 +260,10 @@ Para resolver la pregunta 5 (encontrar las categorías de productos que suelen g
 ```python
 df_reviews = order_items.merge(products, on='product_id').merge(reviews, on='order_id')
 ```
+⚠️DISCLAIMER⚠️
+
+Cada order_id contiene uno o más productos en la misma transacción, al hacer el join el puntaje del review se repite para todos los productos dentro de la misma orden. Por lo tanto, se contó el puntaje del review por ítem vendido en vez de por orden única.
+
 Luego hacemos una agrupación de las categorías de los productos, usamos las funciones count y mean para calcular cuántos productos hay por categoría y el promedio de las puntaciones de las reseñar/reviews.
 
 ```python
