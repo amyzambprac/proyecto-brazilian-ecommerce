@@ -116,6 +116,15 @@ orders_clean = orders[orders['order_status'] == 'delivered'].copy()
 Una vez ya tenemos los datos cargados, transformados y limpios, procedemos a analizar que tipo de funciones y/o operaciones debemos realizar.
 Emperazaremos creando columnas de los tiempos de envío.
 
+### Pruebas básicas de calidad de datos
+
+``` python
+orders_clean[['order_delivered_customer_date', 'order_estimated_delivery_date']].isnull().sum()
+```
+
+Se detectaron 8 pedidos marcados como "delivered" sin fecha de entrega registrada al cliente, quizás es un error de captura en el sistema de Olist. Representan menos del 0.01% de la muestra (8 de 96,478), por lo que no se eliminaron explícitamente. Además pandas los excluye de forma automática de los próximos cálculos.
+
+
 ### Crear las columnas de cálculo de días
 
 Necesitamos agregar 3 columnas en la tabla ya filtrada de pedidos 100% entregados, las cuales son:
@@ -200,7 +209,7 @@ orders_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].d
 ```
 ### Resultado:
 
-En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. También podemos ver como 
+En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. También podemos ver como el número de registros entre "real_delivery_day" y "estimated_delivery_day" varía, con una diferencia de 8 días, eso indica que la columna "real_delivery_day" tiene 8 registros como NULL. 
 
 ![Tabla de mediana aritmetica de las columnas creadas](5.png)
 
@@ -258,16 +267,33 @@ Para resolver la pregunta 5 (encontrar las categorías de productos que suelen g
 ### Categorías de productos que tienen mayor insatisfacción entre los clientes 
 
 ```python
-df_reviews = order_items.merge(products, on='product_id').merge(reviews, on='order_id')
+df_reviews = order_items.merge(products, on = 'product_id').merge(reviews, on = 'order_id').merge(translation,on='product_category_name', how='left')
 ```
+
 ⚠️DISCLAIMER⚠️
 
-Cada order_id contiene uno o más productos en la misma transacción, al hacer el join el puntaje del review se repite para todos los productos dentro de la misma orden. Por lo tanto, se contó el puntaje del review por ítem vendido en vez de por orden única.
+Cada order_id contiene uno o más productos en la misma transacción, al hacer el join el puntaje del review se repite para todos los productos dentro de la misma orden. Por lo tanto, se contó el puntaje del review por ítem vendido en vez de por orden única. Además, también hacemos un merge con el csv de translation, ya que al ser un dataset de una plataforma brasileña, vamos a traducir las categorías a inglés y para este reporte se traducirá al español también.
 
-Luego hacemos una agrupación de las categorías de los productos, usamos las funciones count y mean para calcular cuántos productos hay por categoría y el promedio de las puntaciones de las reseñar/reviews.
+Buscaremos también cuáles son las categorías que no tienen traducción en inglés, que es algo común que se ha reportado de este dataset y de este tipo de bases de datos.
 
 ```python
-cate_summary = df_reviews.groupby('product_category_name')['review_score'].agg(['mean', 'count'])
+df_reviews['product_category_name_english'].isnull().sum()
+len(df_reviews)
+df_reviews[df_reviews['product_category_name_english'].isnull()]['product_category_name'].unique()
+df_reviews[df_reviews['product_category_name_english'].isnull()]['product_category_name'].value_counts(dropna=False)
+df_reviews['product_category_name_english'] = df_reviews['product_category_name_english'].fillna(df_reviews['product_category_name'])
+```
+### Resultado:
+
+El 1.44% de las filas (1622 de 112,372) no contaban con traducción al inglés en la tabla translation; en esos casos se mantuvo el nombre original en portugués para no perder esas categorías del análisis.
+
+![Categorías traducidas](10.png)
+
+
+Luego, hacemos una agrupación de las categorías de los productos, usamos las funciones count y mean para calcular cuántos productos hay por categoría y el promedio de las puntaciones de las reseñar/reviews.
+
+```python
+cate_summary = df_reviews.groupby('product_category_name_english')['review_score'].agg(['mean', 'count'])
 ```
 
 Y ahora buscamos calcular las categorías que generan insastifacción según las reviews de los clientes, también ajustamos con un filtro de > 50 para que solo nos aparezcan las categorías que alcanzaron más de 50 puntos en las puntuaciones de los reviews de los clientes para descartar que se filtren categorías con pocas ventas y mala puntuación que llegarán a distorsionar la tabla resultante. Ordenamos para que nos aparezcan los productos con más insastifacción primero y comprobamos el resultado con solo 10 filas.
@@ -282,7 +308,7 @@ Ahora tenemos el promedio de las reviews según cada categoría y la cantidad de
 
 ### Resultado:
 
-La categoría con mayor insastifacción evaluada por los clientes lleva por nombre 'Moveis escritório' o muebles de oficina con un promedio de insastifaccion de 3.49/5 y 1687 artículos vendidos. 
+La categoría con mayor insastifacción evaluada por los clientes lleva por nombre 'office_furniture' o muebles de oficina con un promedio de insastifaccion de 3.49/5 y 1687 artículos vendidos. 
 
 Finalmente la pregunta 4 se responderá en la sección de conclusiones e insights.
 
