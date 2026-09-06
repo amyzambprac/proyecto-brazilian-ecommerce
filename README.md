@@ -287,7 +287,7 @@ df_reviews['product_category_name_english'] = df_reviews['product_category_name_
 
 El 1.44% de las filas (1622 de 112,372) no contaban con traducción al inglés en la tabla translation; en esos casos se mantuvo el nombre original en portugués para no perder esas categorías del análisis.
 
-![Categorías traducidas](10.png)
+![Categorías traducidas](10_f.png)
 
 
 Luego, hacemos una agrupación de las categorías de los productos, usamos las funciones count y mean para calcular cuántos productos hay por categoría y el promedio de las puntaciones de las reseñar/reviews.
