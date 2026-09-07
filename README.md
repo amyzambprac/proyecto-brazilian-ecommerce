@@ -1,7 +1,7 @@
 ## proyecto-brazilian-ecommerce
 # ¿Qué estados de Brasil tienen los peores tiempos de entrega?
 ### Rol: Junior Data Analyst
-### Herramientras usadas:
+### Herramientas usadas:
 Python, pandas, Jupyter, Power BI
 ## 📊 Dashboard Interactivo
 
@@ -122,7 +122,7 @@ Emperazaremos creando columnas de los tiempos de envío.
 orders_clean[['order_delivered_customer_date', 'order_estimated_delivery_date']].isnull().sum()
 ```
 
-Se detectaron 8 pedidos marcados como "delivered" sin fecha de entrega registrada al cliente, quizás es un error de captura en el sistema de Olist. Representan menos del 0.01% de la muestra (8 de 96,478), por lo que no se eliminaron explícitamente. Además pandas los excluye de forma automática de los próximos cálculos.
+Se detectaron 8 pedidos marcados como "delivered" sin fecha de entrega registrada al cliente, quizás es un error de captura en el sistema de Olist. Representan menos del 0.01% de la muestra (8 de 96,478), por lo que no se eliminaron explícitamente. Además pandas los excluye de forma automática para realizar los próximos cálculos.
 
 
 ### Crear las columnas de cálculo de días
@@ -209,7 +209,7 @@ orders_geo[['real_delivery_day', 'estimated_delivery_day', 'difference_days']].d
 ```
 ### Resultado:
 
-En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. También podemos ver como el número de registros entre "real_delivery_day" y "estimated_delivery_day" varía, con una diferencia de 8 días, eso indica que la columna "real_delivery_day" tiene 8 registros como NULL. 
+En la imagen adjunta observamos que la mediana no varía de la media, eso indica que los valores se encuentran dentro de lo normativo y no hay datos erronéos alterándolos. También podemos ver como el número de pedidos/registros entre "real_delivery_day" y "estimated_delivery_day" coincide con la prueba de calidad de los datos que hicimos anteriormente, la cual demuestra que existe una diferencia de 8 pedidos/registros que no se entregaron a los clientes y por lo tanto se registraron en la tabla como NULL. 
 
 ![Tabla de mediana aritmetica de las columnas creadas](5.png)
 
@@ -272,9 +272,9 @@ df_reviews = order_items.merge(products, on = 'product_id').merge(reviews, on = 
 
 ⚠️DISCLAIMER⚠️
 
-Nuestro objetivo es encontrar las categorías que generan insastifacción entonces se decidió hacer un merge entre las tablas de order_items, products y reviews, ya que cada order_id podría contener uno o más productos en la misma transacción que pueden ser de diferentes categorías, por lo tanto se necesitó hacer un join para clasificar cada producto en diferentes categorías y el puntaje del review que obtuvo cada order_id se repartió para igualitariamente para todos los productos de la misma.
+Al hacer merge de order_items, products, reviews y translation para construir df_reviews, se encontró que 1622 de las 112,372 filas resultantes (1.44%) quedaron sin traducción al inglés. Al desglosar esas 1622 filas, el 98.5% (1598 filas) corresponde a productos que ya venían sin categoría asignada en el dataset original de productos (NaN en product_category_name) que son un vacío del dato de origen. El 1.5% restante (24 filas) sí corresponde a dos categorías presentes en el catálogo pero ausentes de la tabla de traducción (portateis_cozinha_e_preparadores_de_alimentos y pc_gamer). Dado que el porcentaje total es bajo (1.44%), no representa una distorsión relevante para el análisis; en los casos con categoría conocida se conservó el nombre en portugués como respaldo usando fillna, mientras que los productos sin categoría de origen permanecen sin clasificar.
 
-Además, también hacemos un merge con la tabla de translation, ya que al ser un dataset de una plataforma brasileña, vamos a traducir las categorías a inglés y para este reporte se traducirá al español también.
+Además, también hacemos un merge con la tabla de translation, ya que al ser un dataset de una plataforma brasileña, vamos a traducir las categorías a inglés y para este reporte lo traduciré manualmente al español también.
 
 Buscaremos también cuáles son las categorías que no tienen traducción en inglés, que es algo común que se ha reportado de este dataset y de este tipo de bases de datos.
 
@@ -287,7 +287,7 @@ df_reviews['product_category_name_english'] = df_reviews['product_category_name_
 ```
 ### Resultado:
 
-El 1.44% de las filas (1622 de 112,372) no contaban con traducción al inglés en la tabla translation; en esos casos se mantuvo el nombre original en portugués para no perder esas categorías del análisis.
+Se encontró que 1622 de 112,372 filas en la tabla de *"reviews"* no tenían traducción al inglés después de hacer un merge con la tabla de *"translation"*, lo que representa un 1.44% de las filas en la tabla reviews. No es un porcentaje que pueda representar una distorsión al momento de analizar datos. Dentro de las 1622 filas, se encontraron 3 categorías de productos: NaN, portateis_cozinha_e_preparadores_de_alimentos y pc_gamer, estas dos últimas categorías no tenían registros en la tabla de *"translation"*.
 
 ![Categorías traducidas](10_f.png)
 
