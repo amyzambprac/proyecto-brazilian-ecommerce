@@ -301,7 +301,7 @@ Y ahora buscamos calcular las categorías que generan insastifacción según las
 ```python
 cate_insatisfaccion = cate_summary[cate_summary['count'] > 50].sort_values(by='mean', ascending=True).head(10)
 ```
-![Categorías que generan insastifacción](9.png)
+![Categorías que generan insastifacción](11.png)
 
 
 Ahora tenemos el promedio de las reviews según cada categoría y la cantidad de productos que se vendieron de las mismas.
