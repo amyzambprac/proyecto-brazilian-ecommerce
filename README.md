@@ -272,7 +272,9 @@ df_reviews = order_items.merge(products, on = 'product_id').merge(reviews, on = 
 
 ⚠️DISCLAIMER⚠️
 
-Cada order_id contiene uno o más productos en la misma transacción, al hacer el join el puntaje del review se repite para todos los productos dentro de la misma orden. Por lo tanto, se contó el puntaje del review por ítem vendido en vez de por orden única. Además, también hacemos un merge con el csv de translation, ya que al ser un dataset de una plataforma brasileña, vamos a traducir las categorías a inglés y para este reporte se traducirá al español también.
+Nuestro objetivo es encontrar las categorías que generan insastifacción entonces se decidió hacer un merge entre las tablas de order_items, products y reviews, ya que cada order_id podría contener uno o más productos en la misma transacción que pueden ser de diferentes categorías, por lo tanto se necesitó hacer un join para clasificar cada producto en diferentes categorías y el puntaje del review que obtuvo cada order_id se repartió para igualitariamente para todos los productos de la misma.
+
+Además, también hacemos un merge con la tabla de translation, ya que al ser un dataset de una plataforma brasileña, vamos a traducir las categorías a inglés y para este reporte se traducirá al español también.
 
 Buscaremos también cuáles son las categorías que no tienen traducción en inglés, que es algo común que se ha reportado de este dataset y de este tipo de bases de datos.
 
