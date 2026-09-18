@@ -2,8 +2,22 @@
 # ¿Qué estados de Brasil tienen los peores tiempos de entrega?
 ### Rol: Junior Data Analyst
 ### Herramientas usadas:
-Python, pandas, Jupyter, Power BI
-## 📊 Dashboard Interactivo
+Python, pandas, Jupyter, Matplotlib
+## 📊 Dashboard
+
+Para visualizar los hallazgos principales de forma rápida, se construyó el siguiente dashboard con Matplotlib:
+
+![Dashboard de análisis de entregas y satisfacción del cliente](dashboard_ecommerce.png)
+
+**Qué muestra cada panel:**
+
+- **Tiempo de entrega por estado** — ranking de entrega promedio de los 27 estados, desde el más rápido hasta el más lento.
+- 
+- **Categorías con mayor insatisfacción** — top 10 categorías con peor review promedio, que tengan un mínimo de 100 reviews para asegurar resultados confiables.
+- 
+- **Evolución mensual: real vs. estimado** — brecha entre el tiempo de entrega prometido y el real, de enero 2017 a julio 2018 (rango elegido tras excluir meses con muy pocos pedidos o afectados por corte del dataset).
+- 
+- **La promesa vs. la realidad** — resumen de los 3 KPIs clave del análisis.
 
 ## Fase de consulta:
 Olist Store es una plataforma tecnológica y de servicios de comercio electrónico de origen brasileño, fundada en 2015, que funciona como un "puente" digital. Su objetivo principal es permitir a las pequeñas y medianas empresas vender sus productos en los marketplaces más grandes (como Mercado Libre o Amazon) sin necesidad de lidiar con integraciones o logísticas complejas. 
