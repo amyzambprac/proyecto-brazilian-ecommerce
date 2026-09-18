@@ -12,11 +12,11 @@ Para visualizar los hallazgos principales de forma rápida, se construyó el sig
 **Qué muestra cada panel:**
 
 - **Tiempo de entrega por estado** — ranking de entrega promedio de los 27 estados, desde el más rápido hasta el más lento.
-- 
+
 - **Categorías con mayor insatisfacción** — top 10 categorías con peor review promedio, que tengan un mínimo de 100 reviews para asegurar resultados confiables.
-- 
+
 - **Evolución mensual: real vs. estimado** — brecha entre el tiempo de entrega prometido y el real, de enero 2017 a julio 2018 (rango elegido tras excluir meses con muy pocos pedidos o afectados por corte del dataset).
-- 
+  
 - **La promesa vs. la realidad** — resumen de los 3 KPIs clave del análisis.
 
 ## Fase de consulta:
